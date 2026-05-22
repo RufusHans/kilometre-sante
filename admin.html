@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Administration | Kilomètre-Santé</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="admin-page">
+  <header class="site-header">
+    <h1>Administration</h1>
+    <p class="tagline">Kilomètre-Santé — Pointe-Noire</p>
+    <div class="header-actions">
+      <a href="index.html">Retour à l'annuaire</a>
+    </div>
+  </header>
+
+  <div id="login-view" class="login-card">
+    <h2>Connexion</h2>
+    <p>Accès réservé au personnel autorisé. Compte à créer dans le dashboard Supabase Auth.</p>
+    <form id="login-form">
+      <div class="form-group">
+        <label for="email">Courriel</label>
+        <input type="email" id="email" name="email" required autocomplete="username" placeholder="admin@kilometresante.cg">
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" required autocomplete="current-password">
+      </div>
+      <p id="login-error" class="login-error" role="alert"></p>
+      <button type="submit" class="btn-primary">Se connecter</button>
+    </form>
+  </div>
+
+  <div id="admin-view" class="admin-card" hidden>
+    <div class="admin-toolbar">
+      <span id="admin-status"></span>
+      <button type="button" id="add-pharmacy" class="btn-sm">+ Pharmacie</button>
+      <button type="button" id="logout-btn" class="btn-sm">Déconnexion</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Quartier</th>
+            <th>Arrondissement</th>
+            <th>Garde</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="pharmacy-table"></tbody>
+      </table>
+    </div>
+
+    <div id="products-panel" class="products-panel" hidden>
+      <h3 id="products-title">Produits</h3>
+      <ul id="products-list"></ul>
+      <button type="button" id="products-close" class="btn-sm">Fermer</button>
+      <form id="product-form" style="margin-top:1rem">
+        <div class="form-group">
+          <label for="p-name">Nom du produit</label>
+          <input type="text" id="p-name" required>
+        </div>
+        <div class="form-group">
+          <label for="p-price">Prix (FCFA)</label>
+          <input type="number" id="p-price" min="0" required>
+        </div>
+        <div class="form-group">
+          <label for="p-category">Catégorie</label>
+          <input type="text" id="p-category">
+        </div>
+        <div class="form-group">
+          <label for="p-image-url">URL image (optionnel)</label>
+          <input type="url" id="p-image-url">
+        </div>
+        <div class="form-group">
+          <label for="p-image-file">Ou upload image</label>
+          <input type="file" id="p-image-file" accept="image/*">
+        </div>
+        <div class="form-group">
+          <label><input type="checkbox" id="p-stock" checked> En stock</label>
+        </div>
+        <button type="submit" class="btn-primary">Ajouter le produit</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="modal" class="modal" hidden>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title">Pharmacie</h2>
+        <button type="button" id="modal-close" class="modal-close" aria-label="Fermer">×</button>
+      </div>
+      <form id="pharmacy-form">
+        <div class="form-group">
+          <label for="f-name">Nom</label>
+          <input type="text" id="f-name" required>
+        </div>
+        <div class="form-group">
+          <label for="f-arr">Arrondissement</label>
+          <input type="text" id="f-arr" required>
+        </div>
+        <div class="form-group">
+          <label for="f-quartier">Quartier</label>
+          <input type="text" id="f-quartier" required>
+        </div>
+        <div class="form-group">
+          <label for="f-phone">Téléphone</label>
+          <input type="tel" id="f-phone" required>
+        </div>
+        <div class="form-group">
+          <label for="f-hours">Horaires</label>
+          <input type="text" id="f-hours">
+        </div>
+        <div class="form-group">
+          <label for="f-image">URL image façade</label>
+          <input type="url" id="f-image">
+        </div>
+        <div class="form-group">
+          <label for="pharmacy-image-file">Upload façade</label>
+          <input type="file" id="pharmacy-image-file" accept="image/*">
+        </div>
+        <div class="form-group">
+          <label><input type="checkbox" id="f-duty"> De garde</label>
+        </div>
+        <button type="submit" class="btn-primary">Enregistrer</button>
+        <button type="button" id="modal-cancel" class="btn-sm" style="margin-top:0.5rem;width:100%">Annuler</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
