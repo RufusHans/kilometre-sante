@@ -1,0 +1,6 @@
+.DS_Store
+Thumbs.db
+*.log
+.env
+assets/js/config.js
+node_modules/
