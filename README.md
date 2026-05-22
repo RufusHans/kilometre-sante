@@ -21,17 +21,24 @@ Projet académique — MOA : M. Webster L'architecte | MOE : binômes développe
 - [Supabase](https://supabase.com) (PostgreSQL, Auth, Storage) — optionnel
 - GitHub Pages pour l'hébergement statique
 
-## Démarrage local
+## Démarrage local (le plus simple)
 
-```bash
-# Cloner le dépôt
-git clone https://github.com/VOTRE_UTILISATEUR/kilometre-sante.git
-cd kilometre-sante
+**Double-cliquez sur `DEMARRER.bat`** dans le dossier du projet, puis ouvrez dans le navigateur :
 
-# Servir les fichiers (exemple Python)
-python -m http.server 8080
-# Ouvrir http://localhost:8080
+**http://localhost:8080**
+
+> Ne double-cliquez pas sur `index.html` seul : sans serveur, les données ne se chargent pas.
+
+Alternative PowerShell :
+
+```powershell
+cd C:\Users\hansr\kilometre-sante
+powershell -File scripts\serve.ps1
 ```
+
+## Site en ligne
+
+**https://rufushans.github.io/kilometre-sante/**
 
 Sans configuration Supabase, l'application charge automatiquement les données depuis `data/seed-pharmacies.json`.
 
