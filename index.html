@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Kilomètre-Santé — Trouvez les pharmacies de garde à Pointe-Noire">
+  <meta name="theme-color" content="#0d7a5f">
+  <title>Kilomètre-Santé | Pharmacies Pointe-Noire</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💊</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Kilomètre-Santé</h1>
+    <p class="tagline">Pharmacies de garde — Pointe-Noire</p>
+    <div class="header-actions">
+      <a href="admin.html">Administration</a>
+    </div>
+  </header>
+
+  <section class="search-section" aria-label="Recherche et filtres">
+    <div class="search-wrap">
+      <input type="search" id="search" placeholder="Rechercher par nom ou quartier…" autocomplete="off" enterkeyhint="search">
+    </div>
+    <div class="filters">
+      <select id="filter-arrondissement" aria-label="Filtrer par arrondissement">
+        <option value="">Tous les arrondissements</option>
+      </select>
+      <button type="button" id="filter-duty" class="btn-filter" aria-pressed="false">De garde uniquement</button>
+    </div>
+  </section>
+
+  <div class="meta-bar">
+    <span id="result-count">Chargement…</span>
+    <span id="data-status"></span>
+  </div>
+
+  <section id="favorites-section" class="favorites-section" hidden aria-label="Pharmacies favorites">
+    <h2>Vos favoris</h2>
+    <div id="favorites-list"></div>
+  </section>
+
+  <div id="skeleton" class="skeleton-list" aria-hidden="true">
+    <div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+  </div>
+
+  <main id="results" class="results" aria-live="polite"></main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
