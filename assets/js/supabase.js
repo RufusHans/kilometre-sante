@@ -74,13 +74,28 @@
       return normalized;
     }
 
-    const base = window.KS.getBasePath();
-    const res = await fetch(`${base}data/seed-pharmacies.json`);
-    if (!res.ok) throw new Error("Impossible de charger les données locales");
-    const json = await res.json();
-    const list = (json.pharmacies || []).map(normalizePharmacy);
-    window.KS.setCachedPharmacies(list);
-    return list;
+    const paths = [
+      `${window.KS.getBasePath()}data/seed-pharmacies.json`,
+      "data/seed-pharmacies.json",
+      "/data/seed-pharmacies.json",
+    ];
+    let lastErr = null;
+    for (const path of paths) {
+      try {
+        const res = await fetch(path);
+        if (!res.ok) {
+          lastErr = new Error(`HTTP ${res.status}`);
+          continue;
+        }
+        const json = await res.json();
+        const list = (json.pharmacies || []).map(normalizePharmacy);
+        window.KS.setCachedPharmacies(list);
+        return list;
+      } catch (e) {
+        lastErr = e;
+      }
+    }
+    throw lastErr || new Error("Données introuvables. Lancez DEMARRER.bat (pas index.html en double-clic).");
   };
 
   window.KS.getBasePath = function () {
