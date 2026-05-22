@@ -11,7 +11,8 @@ Projet académique — MOA : M. Webster L'architecte | MOE : binômes développe
 - **Recherche** dynamique par nom ou quartier
 - Filtre **« De garde uniquement »** et par **arrondissement**
 - **Favoris** persistants (`localStorage`)
-- **Images** des pharmacies et **catalogue produits** avec miniatures
+- **Images** de façade pour chaque pharmacie (repères visuels par quartier)
+- **Catalogue produits** : **45 produits minimum** par pharmacie, chacun avec image et prix en FCFA
 - **Panneau admin** (Supabase Auth) : CRUD pharmacies, toggle garde, gestion produits, upload images
 - **Mode hors-ligne données** : fonctionne avec `data/seed-pharmacies.json` sans Supabase
 
@@ -81,6 +82,14 @@ Le workflow `.github/workflows/pages.yml` déploie automatiquement la branche `m
 | Maquette | [`docs/maquette.svg`](docs/maquette.svg) — exporter en PNG via navigateur (Ctrl+S) |
 | Vidéo publicité | À publier sur YouTube — ajouter le lien ici : **TODO** |
 | Historique commits | ≥ 10 commits nommés en français |
+
+## Regenerer les donnees (45 produits / pharmacie)
+
+```powershell
+powershell -File scripts/generate-seed.ps1
+```
+
+Cela met a jour `data/seed-pharmacies.json` (810 produits au total).
 
 ## Structure
 
